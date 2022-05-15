@@ -10,6 +10,12 @@ class LaboController(
 ) {
     @GetMapping("/labo")
     fun get(): String {
-        return client.fetch()
+        try {
+            val result = client.fetch()
+            return result
+        } catch (e: Exception) {
+            println(e.stackTrace)
+            throw e
+        }
     }
 }

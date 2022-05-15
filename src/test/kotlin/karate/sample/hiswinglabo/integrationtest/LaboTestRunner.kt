@@ -2,6 +2,7 @@ package karate.sample.hiswinglabo.integrationtest
 
 import com.intuit.karate.core.MockServer
 import com.intuit.karate.junit5.Karate
+import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.TestInstance
 import org.springframework.boot.test.context.SpringBootTest
@@ -20,8 +21,14 @@ class LaboTestRunner {
         server = MockServer
             .feature("classpath:karate/sample/hiswinglabo/integrationtest/mock.feature")
             .arg("demoServerPort", null)
-            .http(0).build()
+            .http(8089).build()
     }
+
+    @AfterAll
+    fun after() {
+        server?.stop()
+    }
+
 
     @Karate.Test
     fun karateTestRun(): Karate {

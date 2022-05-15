@@ -1,5 +1,5 @@
 Feature:
   Background:
     * def m = {}
-  Scenario: pathMatches('/test')
-    * def response = m["test": "test1"]
+  Scenario: methodIs('get') && pathMatches('/facts')
+    * def response = {result: 'ok'}
